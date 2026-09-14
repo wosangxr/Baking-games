@@ -54,7 +54,7 @@ npm install
 npm run dev
 ```
 
-Open (https://baking-games.vercel.app/) in your browser.
+Open https://baking-games.vercel.app/ in your browser.
 
 ---
 
