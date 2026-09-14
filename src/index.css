@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --cream-50: #FFFDF9;
+    --cream-100: #FBF6EE;
+    --cream-200: #F5EBE1;
+    --cream-300: #EBD9C8;
+    --caramel-400: #D4A373;
+    --caramel-500: #C08552;
+    --brown-600: #8C5B3F;
+    --brown-700: #6F452A;
+    --brown-800: #543310;
+    --brown-900: #38220F;
+  }
+
+  body {
+    font-family: 'Itim', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    user-select: none;
+    background-color: #FAF5EE;
+    color: #4A3525;
+  }
+}
+
+/* Custom Soft Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F3E9DD;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4BBA5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BA9D84;
+}
+
+/* Custom Keyframe Animations */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
+
+@keyframes warmPulse {
+  0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.4)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.7)); }
+}
+
+@keyframes stirRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.05); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 3s ease-in-out infinite;
+}
+
+.animate-warm-pulse {
+  animation: warmPulse 2s ease-in-out infinite;
+}
+
+.animate-stir {
+  animation: stirRotate 1s linear infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
