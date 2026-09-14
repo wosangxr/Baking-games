@@ -13,6 +13,7 @@ export const AddIngredientsStep: React.FC = () => {
     addIngredientToBowl,
     removeIngredientFromBowl,
     goToMixingStep,
+    rerollRecipeIngredients,
     cancelBaking,
   } = useGame();
 
@@ -87,15 +88,25 @@ export const AddIngredientsStep: React.FC = () => {
 
             {/* Header of Recipe Note */}
             <div className="border-b-2 border-dashed border-[#E4D3C2] pb-4 mb-5 text-center relative z-10">
-              <div className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#946340] tracking-wider uppercase bg-[#F5EBE1] px-3 py-1 rounded-full mb-1">
-                <span>📌</span> บันทึกสูตรลับประจำร้าน
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#946340] tracking-wider uppercase bg-[#F5EBE1] px-3 py-1 rounded-full">
+                  <span>📌</span> บันทึกสูตรลับ (สุ่มสัดส่วน)
+                </span>
+                <button
+                  type="button"
+                  onClick={rerollRecipeIngredients}
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#8C5B3F] bg-[#FAF0E4] hover:bg-[#EFE0D0] border border-[#DFC4AA] px-2.5 py-1 rounded-xl cursor-pointer transition-all active:scale-95 shadow-2xs"
+                  title="สุ่มจำนวนสัดส่วนวัตถุดิบใหม่"
+                >
+                  <span>🎲</span> สุ่มใหม่
+                </button>
               </div>
               <h3 className="text-2xl font-bold text-[#543310] flex items-center justify-center gap-2">
                 <span>{currentRecipe.icon}</span>
                 <span>{currentRecipe.nameTh}</span>
               </h3>
               <p className="text-xs text-[#8C6B53] mt-1">
-                ตวงวัตถุดิบแต่ละอย่างให้ครบตามจำนวนที่สูตรกำหนดไว้
+                สัดส่วนวัตถุดิบถูกสุ่มสำหรับรอบนี้ ตวงให้ครบตามที่ระบุนะจ๊ะ
               </p>
             </div>
 

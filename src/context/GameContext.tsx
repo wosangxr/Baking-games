@@ -48,6 +48,7 @@ interface GameContextType {
   
   // Kitchen Actions
   startBakingRecipe: (recipe: Recipe) => void;
+  rerollRecipeIngredients: () => void;
   addIngredientToBowl: (type: IngredientType) => void;
   removeIngredientFromBowl: (type: IngredientType) => void;
   goToMixingStep: () => void;
@@ -259,10 +260,18 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return () => clearInterval(interval);
   }, [orders.length, unlockedRecipeIds]);
 
-  // Baking Loop Functions
+  // Baking Loop Functions - Randomize ingredient amounts each time
   const startBakingRecipe = (recipe: Recipe) => {
     sound.playPop(1.0);
-    setCurrentRecipe(recipe);
+    // Randomize required ingredient amounts (between 1 and 3)
+    const randomizedRecipe: Recipe = {
+      ...recipe,
+      requiredIngredients: recipe.requiredIngredients.map(item => ({
+        ...item,
+        amount: Math.floor(Math.random() * 3) + 1,
+      })),
+    };
+    setCurrentRecipe(randomizedRecipe);
     setBakingStep('add_ingredients');
     setBowlIngredients({
       flour: 0,
@@ -279,6 +288,21 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setBakeProgress(0);
     setSelectedToppings([]);
   };
+
+  const rerollRecipeIngredients = () => {
+    if (!currentRecipe) return;
+    sound.playPop(1.1);
+    const randomized: Recipe = {
+      ...currentRecipe,
+      requiredIngredients: currentRecipe.requiredIngredients.map(item => ({
+        ...item,
+        amount: Math.floor(Math.random() * 3) + 1,
+      })),
+    };
+    setCurrentRecipe(randomized);
+    addToast('สุ่มสัดส่วนสูตรใหม่เรียบร้อยแล้ว! 🎲', '🎲');
+  };
+
 
   const addIngredientToBowl = (type: IngredientType) => {
     if (!currentRecipe) return;
@@ -496,6 +520,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         bakeProgress,
         selectedToppings,
         startBakingRecipe,
+        rerollRecipeIngredients,
         addIngredientToBowl,
         removeIngredientFromBowl,
         goToMixingStep,
