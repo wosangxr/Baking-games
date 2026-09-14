@@ -58,14 +58,9 @@ export const RecipeSelector: React.FC = () => {
 
                 {/* Ingredients needed */}
                 <div className="bg-[#FAF4ED] rounded-2xl p-3 mb-4 border border-[#EFE3D5]">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-xs font-bold text-[#7A5034] flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-[#E08A56]" /> วัตถุดิบที่ใช้:
-                    </p>
-                    <span className="text-[11px] bg-[#EFE3D5] text-[#8C6B53] font-bold px-2 py-0.5 rounded-full">
-                      🎲 สุ่มปริมาณ 1-3
-                    </span>
-                  </div>
+                  <p className="text-xs font-bold text-[#7A5034] mb-2 flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-[#E08A56]" /> วัตถุดิบที่ใช้:
+                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     {recipe.requiredIngredients.map(item => {
                       const ing = INGREDIENTS[item.type];
